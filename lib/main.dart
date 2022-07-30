@@ -52,6 +52,11 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeLeft,
+      DeviceOrientation.landscapeRight
+    ]);
+
     Future.delayed(Duration(seconds: 1), () {
       setState(() {
         animation = true;
@@ -69,7 +74,7 @@ class _MainScreenState extends State<MainScreen> {
       body: Container(
         alignment: Alignment.center,
         width: width,
-        height: height,
+        height: width,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
@@ -78,20 +83,20 @@ class _MainScreenState extends State<MainScreen> {
                 fit: BoxFit.cover)),
         child: Stack(alignment: Alignment.center, children: [
           Positioned(
-            top: 250,
+            top: 140,
             child: Container(
               child: Stack(
                 children: [
                   Container(
-                    width: 300,
-                    height: 400,
+                    width: 400,
+                    height: 200,
                     child: Stack(children: [
                       for (int i = 0; i < list2.length; i++)
                         Container(
                           child: Image.asset(
                             "assets/puzzle/${list2[i]}.png",
-                            width: 300,
-                            height: 400,
+                            width: 400,
+                            height: 200,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -100,8 +105,8 @@ class _MainScreenState extends State<MainScreen> {
                   Container(
                     decoration: BoxDecoration(),
                     child: Image.asset("assets/puzzle/temp.webp",
-                        width: 300,
-                        height: 400,
+                        width: 400,
+                        height: 200,
                         fit: BoxFit.fill,
                         color: Color.fromRGBO(255, 255, 255, 0.5),
                         colorBlendMode: BlendMode.modulate),
@@ -142,8 +147,8 @@ class _MainScreenState extends State<MainScreen> {
                     return Container(
                       child: Image.asset(
                         "assets/puzzle/fram.png",
-                        width: 300,
-                        height: 400,
+                        width: 400,
+                        height: 200,
                         fit: BoxFit.fill,
                         color: Colors.black,
                       ),
@@ -154,7 +159,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           Positioned(
-            top: 100,
+            top: 50,
             child: Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -167,33 +172,37 @@ class _MainScreenState extends State<MainScreen> {
                   Row(
                     children: [
                       SizedBox(
-                        width: 50,
+                        width: 40,
                       ),
                       Container(
                         alignment: Alignment.center,
-                        height: 100,
+                        height: 80,
                         width: 350,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return Draggable<ImageModel>(
                                 data: list[index],
-                                feedback: AnimatedContainer(
-                                  // alignment: Alignment.center,
-                                  // color: Colors.white,
-                                  curve: Curves.linear,
-                                  duration: Duration(seconds: 2),
-                                  width: animation ? 70 : 90,
-                                  height: animation ? 70 : 90,
-                                  onEnd: () {
-                                    setState(() {
-                                      animation = animation ? false : true;
-                                    });
-                                  },
-                                  child: Container(
-                                    child: Image.asset(
-                                      list[index].image,
-                                      fit: BoxFit.contain,
+                                feedback: Container(
+                                  width: 120,
+                                    height: 120,
+                                  child: AnimatedContainer(
+                                    // alignment: Alignment.center,
+                                    // color: Colors.white,
+                                    curve: Curves.linear,
+                                    duration: Duration(seconds: 2),
+                                    width: animation ? 90 : 120,
+                                    height: 90,
+                                    onEnd: () {
+                                      setState(() {
+                                        animation = animation ? false : true;
+                                      });
+                                    },
+                                    child: Container(
+                                      child: Image.asset(
+                                        list[index].image,
+                                        fit: BoxFit.contain,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -202,8 +211,8 @@ class _MainScreenState extends State<MainScreen> {
                                   // color: Colors.white,
                                   curve: Curves.linear,
                                   duration: Duration(seconds: 2),
-                                  width: animation ? 80 : 100,
-                                  height: animation ? 80 : 100,
+                                  width: animation ? 70 : 90,
+                                  height: 90,
                                   onEnd: () {
                                     setState(() {
                                       animation = animation ? false : true;
