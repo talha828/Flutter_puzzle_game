@@ -36,6 +36,17 @@ class _MainScreenState extends State<MainScreen> {
     ImageModel(image: "assets/cropImage/8.png", index: 8),
     ImageModel(image: "assets/cropImage/9.png", index: 9),
   ];
+  List<ImageModel> list3 = [
+    ImageModel(image: "assets/cropImage/1.png", index: 1),
+    ImageModel(image: "assets/cropImage/2.png", index: 2),
+    ImageModel(image: "assets/cropImage/3.png", index: 3),
+    ImageModel(image: "assets/cropImage/4.png", index: 4),
+    ImageModel(image: "assets/cropImage/5.png", index: 5),
+    ImageModel(image: "assets/cropImage/6.png", index: 6),
+    ImageModel(image: "assets/cropImage/7.png", index: 7),
+    ImageModel(image: "assets/cropImage/8.png", index: 8),
+    ImageModel(image: "assets/cropImage/9.png", index: 9),
+  ];
   List list2 = [];
   bool animation = false;
 
@@ -113,7 +124,18 @@ class _MainScreenState extends State<MainScreen> {
                           btnCancelText: "Ok",
                           dismissOnTouchOutside: false,
                           btnOkOnPress: () {},
-                        )..show();
+                        )..show().then((value) {
+                          list.addAll(list3);
+                          list2.clear();
+                          animation=false;
+                          setState(() {
+                          });
+                          Future.delayed(Duration(seconds: 1),(){
+                            setState(() {
+                              animation=true;
+                            });
+                          });
+                        });
                       });
                     }
                   }, builder: (context, accept, reject) {
