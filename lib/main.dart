@@ -49,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
   ];
   List list2 = [];
   bool animation = false;
-
+  bool show=false;
   @override
   void initState() {
     SystemChrome.setPreferredOrientations([
@@ -87,6 +87,16 @@ class _MainScreenState extends State<MainScreen> {
             child: Container(
               child: Stack(
                 children: [
+
+                  Container(
+                    decoration: BoxDecoration(),
+                    child: Image.asset("assets/puzzle/temp.webp",
+                        width: 400,
+                        height: 200,
+                        fit: BoxFit.fill,
+                        color: Color.fromRGBO(255, 255, 255, 0.3),
+                        colorBlendMode: BlendMode.modulate),
+                  ),
                   Container(
                     width: 400,
                     height: 200,
@@ -102,18 +112,12 @@ class _MainScreenState extends State<MainScreen> {
                         ),
                     ]),
                   ),
-                  Container(
-                    decoration: BoxDecoration(),
-                    child: Image.asset("assets/puzzle/temp.webp",
-                        width: 400,
-                        height: 200,
-                        fit: BoxFit.fill,
-                        color: Color.fromRGBO(255, 255, 255, 0.5),
-                        colorBlendMode: BlendMode.modulate),
-                  ),
-                  DragTarget<ImageModel>(onWillAccept: (data) {
+                 DragTarget<ImageModel>(onWillAccept: (data) {
                     return data!.image != "red";
                   }, onAccept: (data) {
+                    setState(() {
+                      show=true;
+                    });
                     print(data);
                     list2.add(data.index);
                     list.remove(data);
@@ -133,6 +137,7 @@ class _MainScreenState extends State<MainScreen> {
                           list.addAll(list3);
                           list2.clear();
                           animation=false;
+                          show=false;
                           setState(() {
                           });
                           Future.delayed(Duration(seconds: 1),(){
@@ -144,14 +149,13 @@ class _MainScreenState extends State<MainScreen> {
                       });
                     }
                   }, builder: (context, accept, reject) {
-                    return Container(
-                      child: Image.asset(
-                        "assets/puzzle/fram.png",
-                        width: 400,
-                        height: 200,
-                        fit: BoxFit.fill,
-                        color: Colors.black,
-                      ),
+                    return Image.asset(
+                      "assets/puzzle/fram.png",
+                      width: 400,
+                      height: 200,
+                      fit: BoxFit.fill,
+                      color: Colors.black.withOpacity(0.2),
+                        colorBlendMode: BlendMode.modulate
                     );
                   }),
                 ],
