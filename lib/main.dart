@@ -88,76 +88,390 @@ class _MainScreenState extends State<MainScreen> {
               child: Stack(
                 children: [
 
+                  // Container(
+                  //   decoration: BoxDecoration(),
+                  //   child: Image.asset("assets/puzzle/temp.webp",
+                  //       width: 400,
+                  //       height: 200,
+                  //       fit: BoxFit.fill,
+                  //       color: Color.fromRGBO(255, 255, 255, 0.3),
+                  //       colorBlendMode: BlendMode.modulate),
+                  // ),
                   Container(
-                    decoration: BoxDecoration(),
-                    child: Image.asset("assets/puzzle/temp.webp",
-                        width: 400,
-                        height: 200,
-                        fit: BoxFit.fill,
-                        color: Color.fromRGBO(255, 255, 255, 0.3),
-                        colorBlendMode: BlendMode.modulate),
-                  ),
-                  Container(
-                    width: 400,
-                    height: 200,
+                    width: 390,
+                    height: 210,
                     child: Stack(children: [
                       for (int i = 0; i < list2.length; i++)
                         Container(
                           child: Image.asset(
                             "assets/puzzle/${list2[i]}.png",
-                            width: 400,
-                            height: 200,
+                            width: 390,
+                            height: 210,
                             fit: BoxFit.fill,
                           ),
                         ),
                     ]),
                   ),
-                 DragTarget<ImageModel>(onWillAccept: (data) {
-                    return data!.image != "red";
-                  }, onAccept: (data) {
-                    setState(() {
-                      show=true;
-                    });
-                    print(data);
-                    list2.add(data.index);
-                    list.remove(data);
-                    setState(() {});
-                    if (list.length < 1) {
-                      Future.delayed(Duration(seconds: 1), () {
-                        AwesomeDialog(
-                          context: context,
-                          dialogType: DialogType.SUCCES,
-                          animType: AnimType.BOTTOMSLIDE,
-                          title: "congratulation",
-                          desc: "you win the game",
-                          btnCancelText: "Ok",
-                          dismissOnTouchOutside: false,
-                          btnOkOnPress: () {},
-                        )..show().then((value) {
-                          list.addAll(list3);
-                          list2.clear();
-                          animation=false;
-                          show=false;
-                          setState(() {
-                          });
-                          Future.delayed(Duration(seconds: 1),(){
-                            setState(() {
-                              animation=true;
+                  Image.asset(
+                      "assets/puzzle/fram.png",
+                      width: 390,
+                      height: 210,
+                      fit: BoxFit.fill,
+                      color: Colors.black
+                  ),
+                Column(
+                  children: [
+                    Row(children: [
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 1;
+                      }, onAccept: (data) {
+                        data.index==1? list2.add(data.index):print(false);
+                        data.index==1? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
                             });
                           });
-                        });
-                      });
-                    }
-                  }, builder: (context, accept, reject) {
-                    return Image.asset(
-                      "assets/puzzle/fram.png",
-                      width: 400,
-                      height: 200,
-                      fit: BoxFit.fill,
-                      color: Colors.black.withOpacity(0.2),
-                        colorBlendMode: BlendMode.modulate
-                    );
-                  }),
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 2;
+                      }, onAccept: (data) {
+                        data.index==2? list2.add(data.index):print(false);
+                        data.index==2? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 3;
+                      }, onAccept: (data) {
+                        data.index==3? list2.add(data.index):print(false);
+                        data.index==3? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                    ],),
+                    Row(children: [
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 4;
+                      }, onAccept: (data) {
+                        data.index==4? list2.add(data.index):print(false);
+                        data.index==4? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 5;
+                      }, onAccept: (data) {
+                        data.index==5? list2.add(data.index):print(false);
+                        data.index==5? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 6;
+                      }, onAccept: (data) {
+                        data.index==6? list2.add(data.index):print(false);
+                        data.index==6? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                    ],),
+                    Row(children: [
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 7;
+                      }, onAccept: (data) {
+                        data.index==7? list2.add(data.index):print(false);
+                        data.index==7? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 8;
+                      }, onAccept: (data) {
+                        data.index==8? list2.add(data.index):print(false);
+                        data.index==8? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                      DragTarget<ImageModel>(onWillAccept: (data) {
+                        return data!.index== 9;
+                      }, onAccept: (data) {
+                        data.index==9? list2.add(data.index):print(false);
+                        data.index==9? list.remove(data):print(false);
+                        setState(() {});
+                        if (list.length < 1) {
+                          Future.delayed(Duration(seconds: 1), () {
+                            AwesomeDialog(
+                              context: context,
+                              dialogType: DialogType.SUCCES,
+                              animType: AnimType.BOTTOMSLIDE,
+                              title: "congratulation",
+                              desc: "you win the game",
+                              btnCancelText: "Ok",
+                              dismissOnTouchOutside: false,
+                              btnOkOnPress: () {},
+                            )..show().then((value) {
+                              list.addAll(list3);
+                              list2.clear();
+                              animation=false;
+                              show=false;
+                              setState(() {
+                              });
+                              Future.delayed(Duration(seconds: 1),(){
+                                setState(() {
+                                  animation=true;
+                                });
+                              });
+                            });
+                          });
+                        }
+                      }, builder: (context, accept, reject) {
+                        return SizedBox(
+                          width: 130,
+                          height: 70,
+                        );
+                      }),
+                    ],),
+                  ],
+                )
+
                 ],
               ),
             ),
