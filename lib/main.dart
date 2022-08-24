@@ -26,26 +26,26 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   List<ImageModel> list = [
-    ImageModel(image: "assets/cartoon/bracks/1.png", index: 1),
-    ImageModel(image: "assets/cartoon/bracks/2.png", index: 2),
-    ImageModel(image: "assets/cartoon/bracks/3.png", index: 3),
-    ImageModel(image: "assets/cartoon/bracks/4.png", index: 4),
-    ImageModel(image: "assets/cartoon/bracks/5.png", index: 5),
-    ImageModel(image: "assets/cartoon/bracks/6.png", index: 6),
-    ImageModel(image: "assets/cartoon/bracks/7.png", index: 7),
-    ImageModel(image: "assets/cartoon/bracks/8.png", index: 8),
-    ImageModel(image: "assets/cartoon/bracks/9.png", index: 9),
+    ImageModel(image: "assets/rabit/crop_image/1.png", index: 1),
+    ImageModel(image: "assets/rabit/crop_image/2.png", index: 2),
+    ImageModel(image: "assets/rabit/crop_image/3.png", index: 3),
+    ImageModel(image: "assets/rabit/crop_image/4.png", index: 4),
+    ImageModel(image: "assets/rabit/crop_image/5.png", index: 5),
+    ImageModel(image: "assets/rabit/crop_image/6.png", index: 6),
+    ImageModel(image: "assets/rabit/crop_image/7.png", index: 7),
+    ImageModel(image: "assets/rabit/crop_image/8.png", index: 8),
+    ImageModel(image: "assets/rabit/crop_image/9.png", index: 9),
   ];
   List<ImageModel> list3 = [
-    ImageModel(image: "assets/cartoon/bracks/1.png", index: 1),
-    ImageModel(image: "assets/cartoon/bracks/2.png", index: 2),
-    ImageModel(image: "assets/cartoon/bracks/3.png", index: 3),
-    ImageModel(image: "assets/cartoon/bracks/4.png", index: 4),
-    ImageModel(image: "assets/cartoon/bracks/5.png", index: 5),
-    ImageModel(image: "assets/cartoon/bracks/6.png", index: 6),
-    ImageModel(image: "assets/cartoon/bracks/7.png", index: 7),
-    ImageModel(image: "assets/cartoon/bracks/8.png", index: 8),
-    ImageModel(image: "assets/cartoon/bracks/9.png", index: 9),
+    ImageModel(image: "assets/rabit/crop_image/1.png", index: 1),
+    ImageModel(image: "assets/rabit/crop_image/2.png", index: 2),
+    ImageModel(image: "assets/rabit/crop_image/3.png", index: 3),
+    ImageModel(image: "assets/rabit/crop_image/4.png", index: 4),
+    ImageModel(image: "assets/rabit/crop_image/5.png", index: 5),
+    ImageModel(image: "assets/rabit/crop_image/6.png", index: 6),
+    ImageModel(image: "assets/rabit/crop_image/7.png", index: 7),
+    ImageModel(image: "assets/rabit/crop_image/8.png", index: 8),
+    ImageModel(image: "assets/rabit/crop_image/9.png", index: 9),
   ];
   List list2 = [];
   bool animation = false;
@@ -62,7 +62,8 @@ class _MainScreenState extends State<MainScreen> {
     });
     super.initState();
   }
-
+  double start=5;
+  double end= 10;
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
@@ -76,7 +77,8 @@ class _MainScreenState extends State<MainScreen> {
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage(
-                  'assets/bg_fram.jpg',
+                  'assets/rabit/backgroung/back_ground.jpg',
+
                 ),
                 fit: BoxFit.cover)),
         child: Stack(alignment: Alignment.center, children: [
@@ -100,16 +102,19 @@ class _MainScreenState extends State<MainScreen> {
                     child: Stack(children: [
                       for (int i = 0; i < list2.length; i++)
                         Container(
-                          child: Image.asset(
-                            "assets/cartoon/image/${list2[i]}.png",
-                            width: 270,
-                            height: 210,
-                            fit: BoxFit.fill,
+                          child: Hero(
+                            tag:list2[i],
+                            child: Image.asset(
+                              "assets/rabit/transparant/${list2[i]}.png",
+                              width: 270,
+                              height: 210,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                     ]),
                   ),
-                  Image.asset("assets/puzzle/fram.png",
+                  Image.asset("assets/fram.png",
                       width: 270,
                       height: 210,
                       fit: BoxFit.fill,
@@ -497,53 +502,74 @@ class _MainScreenState extends State<MainScreen> {
                   //   child: Image.asset("assets/puzzle/10.png",width: 200,height: 400,fit: BoxFit.fill,color: Colors.black,),
                   // ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         alignment: Alignment.center,
                         height: 80,
-                        width: 350,
+                        width: 400,
                         child: ListView.builder(
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return Draggable<ImageModel>(
-                                data: list[index],
-                                feedback: Container(
-                                  width: 120,
-                                  height: 120,
-                                  child: AnimatedContainer(
-                                    // alignment: Alignment.center,
-                                    // color: Colors.white,
-                                    curve: Curves.linear,
-                                    duration: Duration(seconds: 2),
-                                    width: animation ? 90 : 120,
-                                    height: 90,
-                                    onEnd: () {
-                                      setState(() {
-                                        animation = animation ? false : true;
-                                      });
-                                    },
-                                    child: Container(
-                                      child: Image.asset(
-                                        list[index].image,
-                                        fit: BoxFit.contain,
-                                      ),
+                              return Dismissible(
+                                direction: DismissDirection.vertical,
+                                key: UniqueKey(),
+                                child: Container(
+                                  child: Draggable<ImageModel>(
+                                    data: list[index],
+                                    feedback: TweenAnimationBuilder(
+                                      tween: Tween<double>(begin: 90,end:100 ),
+                                      duration: Duration(seconds: 1),
+                                      builder: (context,double value,child){
+                                        return Container(
+                                          // alignment: Alignment.center,
+                                          // color: Colors.white,
+                                          width:  90,
+                                          height: 90,
+                                          child: Container(
+                                            child: Hero(
+                                            tag: list[index].index,
+                                              child: Image.asset(
+                                                list[index].image,
+                                                fit: BoxFit.contain,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
                                     ),
-                                  ),
-                                ),
-                                child: AnimatedContainer(
-                                  // alignment: Alignment.center,
-                                  // color: Colors.white,
-                                  curve: Curves.linear,
-                                  duration: Duration(seconds: 2),
-                                  width: animation ? 70 : 90,
-                                  height: 90,
-                                  onEnd: () {
-                                    setState(() {
-                                      animation = animation ? false : true;
-                                    });
-                                  },
-                                  child: Container(
-                                    child: Image.asset(list[index].image),
+                                    child: TweenAnimationBuilder(
+                                      onEnd: (){
+                                        setState(() {
+                                         if(start==5.0){
+                                           start=10.0;
+                                           end=5.0;
+                                         }else{
+                                           start=5.0;
+                                           end=10.0;
+                                         }
+                                        });
+                                      },
+                                      tween: Tween<double>(begin: start,end:end ),
+                                      duration: Duration(seconds: 2),
+                                      builder: (context,double value,child){
+                                        return Container(
+                                          //margin: EdgeInsets.symmetric(horizontal: width * 0.02),
+                                          padding: EdgeInsets.symmetric(horizontal: value ,vertical: value),
+                                          //color: Colors.grey,
+                                          // alignment: Alignment.center,
+                                          // color: Colors.white,
+                                          width:  90,
+                                          height: 90,
+                                          child: Container(
+                                            child: Image.asset(
+                                              list[index].image,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    )
                                   ),
                                 ),
                               );
